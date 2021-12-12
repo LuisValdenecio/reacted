@@ -1,25 +1,68 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function App() {
+function CalcScreen (props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="calcScreen">
+      <span>{props.value}</span>
     </div>
   );
+}
+
+function CalcButtonForNumber (props) {
+  return (
+    <button class="calcButton" onClick={props.onClick}>
+      1
+    </button>
+  );
+}
+
+class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      screenValue : 'No operation has been performed'
+    }
+  }
+
+  handleBtnClick = () => {
+    this.setState({screenValue : '1'});
+  }
+
+  renderScreen = () => {
+    return <CalcScreen
+      value={this.state.screenValue}
+    ></CalcScreen>
+  }
+
+  renderNumberBtn = () => {
+    return <CalcButtonForNumber onClick={() => this.handleBtnClick()}></CalcButtonForNumber>
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.renderScreen()}
+
+        <div class="row">
+          <div class="col-lg-3 col-md-3">
+            {this.renderNumberBtn()}
+          </div>
+          <div class="col-lg-3 col-md-3">
+            {this.renderNumberBtn()}
+          </div>
+          <div class="col-lg-3 col-md-3">
+            {this.renderNumberBtn()}
+          </div>
+          <div class="col-lg-3 col-md-3">
+            {this.renderNumberBtn()}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
