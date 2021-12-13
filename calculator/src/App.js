@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
@@ -39,40 +38,36 @@ class App extends React.Component {
       currentOperation : null,
       realValue : 0,
       symbols : ['<-- DELETE', '+', '-', '%', '*', '/', 'COMPUTE'],
+      operation_prototype : (operator) => {
+        let leftSide = Number(this.state.screenValue.split(operator)[0]);
+        let rightSide = Number(this.state.screenValue.split(operator)[1]);
+
+        if (rightSide == 0 && operator == '/') {
+          this.setState({result : 'DIVISION BY O IS UNDEFINED'})
+        } else {
+          this.setState({result : eval(leftSide+''+operator+''+rightSide)});
+        }
+
+      },
       operations : {
         '+' : () => {
-          let leftSide = Number(this.state.screenValue.split('+')[0]);
-          let rightSide = Number(this.state.screenValue.split('+')[1]);
-          this.setState({result : leftSide + rightSide});
+          this.state.operation_prototype('+');
         },
 
         '-' : () => {
-          let leftSide = Number(this.state.screenValue.split('-')[0]);
-          let rightSide = Number(this.state.screenValue.split('-')[1]);
-          this.setState({result : leftSide - rightSide});
+         this.state.operation_prototype('-');
         },
 
         '*' : () =>   {
-          let leftSide = Number(this.state.screenValue.split('*')[0]);
-          let rightSide = Number(this.state.screenValue.split('*')[1]);
-          this.setState({result : leftSide * rightSide});
+          this.state.operation_prototype('*');
         },
 
         '/' : () => {
-          let leftSide = Number(this.state.screenValue.split('/')[0]);
-          let rightSide = Number(this.state.screenValue.split('/')[1]);
-
-          if (rightSide == 0) {
-            this.setState({result : 'DIVISION BY O IS UNDEFINED'})
-          } else {
-            this.setState({result : leftSide / rightSide});
-          }
+          this.state.operation_prototype('/');
         },
 
         '%' : () => {
-          let leftSide = Number(this.state.screenValue.split('%')[0]);
-          let rightSide = Number(this.state.screenValue.split('%')[1]);
-          this.setState({result : leftSide % rightSide});
+          this.state.operation_prototype('%');
         }
       }
     }
@@ -110,44 +105,32 @@ class App extends React.Component {
     ]();
   }
 
-  handleSumBtnClick = () => {
+  general_operator = (operator) => {
     if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '+'});
+      this.setState({currentOperation : operator});
       let actualValue = this.state.screenValue;
-      this.setState({screenValue : actualValue + '+'});
+      this.setState({screenValue : actualValue + operator});
     }
+  }
+
+  handleSumBtnClick = () => {
+    this.general_operator('+');
   }
 
   handleSubtractionBtnClick = () => {
-    if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '-'});
-      let actualValue = this.state.screenValue;
-      this.setState({screenValue : actualValue + '-'});
-    }
+    this.general_operator('-');
   }
 
   handleMultiplyBtnClick = () => {
-    if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '*'});
-      let actualValue = this.state.screenValue;
-      this.setState({screenValue : actualValue + '*'});
-    }
+    this.general_operator('*');
   }
 
   handleDivisionBtnClick = () => {
-    if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '/'});
-      let actualValue = this.state.screenValue;
-      this.setState({screenValue : actualValue + '/'});
-    }
+    this.general_operator('/');
   }
 
   handleModulusButtonClick = () => {
-    if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '%'});
-      let actualValue = this.state.screenValue;
-      this.setState({screenValue : actualValue + '%'});
-    }
+    this.general_operator('%');
   }
 
   renderScreen = () => {
