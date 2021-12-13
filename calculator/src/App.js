@@ -7,7 +7,8 @@ const DEFAULT_MSG = '0';
 function CalcScreen (props) {
   return (
     <div id="calcScreen">
-      <span>{props.value}</span>
+      <span>{props.value}</span><br/>
+      <span id="result">{props.result}</span>
     </div>
   );
 }
@@ -34,8 +35,33 @@ class App extends React.Component {
     super(props);
     this.state = {
       screenValue : DEFAULT_MSG,
+      result : DEFAULT_MSG,
+      currentOperation : null,
       realValue : 0,
-      symbols : ['<-- DELETE', '+', '-', '%', '*', '/']
+      symbols : ['<-- DELETE', '+', '-', '%', '*', '/', 'COMPUTE'],
+      operations : {
+        '+' : () => {
+          let leftSide = Number(this.state.screenValue.split('+')[0]);
+          let rightSide = Number(this.state.screenValue.split('+')[1]);
+          this.setState({result : leftSide + rightSide});
+        },
+
+        '-' : () => {
+
+        },
+
+        '*' : () => {
+
+        },
+
+        '/' : () => {
+
+        },
+
+        '%' : () => {
+
+        }
+      }
     }
   }
 
@@ -64,13 +90,25 @@ class App extends React.Component {
 
   }
 
+  handleComputation = () =>  {
+    this.state.operations[
+      this.state.currentOperation
+    ]();
+  }
+
+
   handleSumBtnClick = () => {
-    alert('it sums!');
+    if (this.state.screenValue != DEFAULT_MSG) {
+      this.setState({currentOperation : '+'})
+      let actualValue = this.state.screenValue;
+      this.setState({screenValue : actualValue + '+'});
+    }
   }
 
   renderScreen = () => {
     return <CalcScreen
       value={this.state.screenValue}
+      result={`RESULT: ${this.state.result}`}
     ></CalcScreen>
   }
 
@@ -78,6 +116,13 @@ class App extends React.Component {
     return <CalcEraseButton
       value={this.state.symbols[0]}
       onClick={() => this.handleEraseBtnClick()}
+      ></CalcEraseButton>
+  }
+
+  renderComputeButton = () => {
+    return <CalcEraseButton
+      value={this.state.symbols[6]}
+      onClick={() => this.handleComputation()}
       ></CalcEraseButton>
   }
 
@@ -149,7 +194,7 @@ class App extends React.Component {
               </div>
 
               <div class="col-lg-12">
-
+                {this.renderComputeButton()}
               </div>
 
               <div class="col-lg-12">
