@@ -21,7 +21,7 @@ function CalcButtonForNumber (props) {
   );
 }
 
-function CalcEraseButton (props) {
+function CalcButtonForOperators (props) {
   return (
     <button className="calcButton" id="operator"
       onClick={props.onClick}
@@ -157,58 +157,41 @@ class App extends React.Component {
     ></CalcScreen>
   }
 
+  general_renderer = (value, clickHandler) => {
+    return <CalcButtonForOperators
+      value={value}
+      onClick={() => clickHandler()}></CalcButtonForOperators>
+  }
+
   renderEraseButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[0]}
-      onClick={() => this.handleEraseBtnClick()}
-      ></CalcEraseButton>
+    return this.general_renderer(this.state.symbols[0], this.handleEraseBtnClick);
   }
 
   renderComputeButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[6]}
-      onClick={() => this.handleComputation()}
-      ></CalcEraseButton>
+    return this.general_renderer(this.state.symbols[6], this.handleComputation);
   }
 
   renderAddButton = () => {
-    return <CalcEraseButton
-        value={this.state.symbols[1]}
-        onClick={() => this.handleSumBtnClick()}>
-      </CalcEraseButton>
+    return this.general_renderer(this.state.symbols[1], this.handleSumBtnClick);
   }
 
   renderSubstractButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[2]}
-      onClick={() => this.handleSubtractionBtnClick()}>
-      </CalcEraseButton>
+    return this.general_renderer(this.state.symbols[2], this.handleSubtractionBtnClick);
   }
 
   renderMultiplyButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[4]}
-      onClick={() => this.handleMultiplyBtnClick()}>
-      </CalcEraseButton>
+    return this.general_renderer(this.state.symbols[4], this.handleMultiplyBtnClick);
   }
   
   renderDivisionButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[5]}
-      onClick={() => this.handleDivisionBtnClick()}>
-      </CalcEraseButton> 
+    return this.general_renderer(this.state.symbols[5], this.handleDivisionBtnClick);
   }
 
   renderModulusButton = () => {
-    return <CalcEraseButton
-      value={this.state.symbols[3]}
-      onClick={() => this.handleModulusButtonClick()}>   
-      </CalcEraseButton>
+    return this.general_renderer(this.state.symbols[3], this.handleModulusButtonClick);
   }
 
   /*---------- end of buttons for operations --------- */
-
-
 
 
   renderNumberBtn = (number) => {
