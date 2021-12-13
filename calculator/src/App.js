@@ -47,7 +47,9 @@ class App extends React.Component {
         },
 
         '-' : () => {
-
+          let leftSide = Number(this.state.screenValue.split('-')[0]);
+          let rightSide = Number(this.state.screenValue.split('-')[1]);
+          this.setState({result : leftSide - rightSide});
         },
 
         '*' : () =>   {
@@ -57,11 +59,20 @@ class App extends React.Component {
         },
 
         '/' : () => {
+          let leftSide = Number(this.state.screenValue.split('/')[0]);
+          let rightSide = Number(this.state.screenValue.split('/')[1]);
 
+          if (rightSide == 0) {
+            this.setState({result : 'DIVISION BY O IS UNDEFINED'})
+          } else {
+            this.setState({result : leftSide / rightSide});
+          }
         },
 
         '%' : () => {
-
+          let leftSide = Number(this.state.screenValue.split('%')[0]);
+          let rightSide = Number(this.state.screenValue.split('%')[1]);
+          this.setState({result : leftSide % rightSide});
         }
       }
     }
@@ -92,12 +103,12 @@ class App extends React.Component {
 
   }
 
+  /*---------  buttons for the operations ------------*/
   handleComputation = () =>  {
     this.state.operations[
       this.state.currentOperation
     ]();
   }
-
 
   handleSumBtnClick = () => {
     if (this.state.screenValue != DEFAULT_MSG) {
@@ -107,11 +118,35 @@ class App extends React.Component {
     }
   }
 
+  handleSubtractionBtnClick = () => {
+    if (this.state.screenValue != DEFAULT_MSG) {
+      this.setState({currentOperation : '-'});
+      let actualValue = this.state.screenValue;
+      this.setState({screenValue : actualValue + '-'});
+    }
+  }
+
   handleMultiplyBtnClick = () => {
     if (this.state.screenValue != DEFAULT_MSG) {
       this.setState({currentOperation : '*'});
       let actualValue = this.state.screenValue;
       this.setState({screenValue : actualValue + '*'});
+    }
+  }
+
+  handleDivisionBtnClick = () => {
+    if (this.state.screenValue != DEFAULT_MSG) {
+      this.setState({currentOperation : '/'});
+      let actualValue = this.state.screenValue;
+      this.setState({screenValue : actualValue + '/'});
+    }
+  }
+
+  handleModulusButtonClick = () => {
+    if (this.state.screenValue != DEFAULT_MSG) {
+      this.setState({currentOperation : '%'});
+      let actualValue = this.state.screenValue;
+      this.setState({screenValue : actualValue + '%'});
     }
   }
 
@@ -136,12 +171,17 @@ class App extends React.Component {
       ></CalcEraseButton>
   }
 
-  /*---------  buttons for the operations ------------*/
-
   renderAddButton = () => {
     return <CalcEraseButton
         value={this.state.symbols[1]}
         onClick={() => this.handleSumBtnClick()}>
+      </CalcEraseButton>
+  }
+
+  renderSubstractButton = () => {
+    return <CalcEraseButton
+      value={this.state.symbols[2]}
+      onClick={() => this.handleSubtractionBtnClick()}>
       </CalcEraseButton>
   }
 
@@ -152,8 +192,19 @@ class App extends React.Component {
       </CalcEraseButton>
   }
   
+  renderDivisionButton = () => {
+    return <CalcEraseButton
+      value={this.state.symbols[5]}
+      onClick={() => this.handleDivisionBtnClick()}>
+      </CalcEraseButton> 
+  }
 
-
+  renderModulusButton = () => {
+    return <CalcEraseButton
+      value={this.state.symbols[3]}
+      onClick={() => this.handleModulusButtonClick()}>   
+      </CalcEraseButton>
+  }
 
   /*---------- end of buttons for operations --------- */
 
@@ -220,7 +271,19 @@ class App extends React.Component {
               </div>
 
               <div class="col-lg-12">
+                {this.renderSubstractButton()}
+              </div>
+
+              <div class="col-lg-12">
                 {this.renderMultiplyButton()}
+              </div>
+
+              <div class="col-lg-12">
+                {this.renderDivisionButton()}
+              </div>
+
+              <div class="col-lg-12">
+                {this.renderModulusButton()}
               </div>
 
               <div class="col-lg-12">
@@ -228,7 +291,7 @@ class App extends React.Component {
               </div>
 
               <div class="col-lg-12">
-                
+               
               </div>
 
             </div>
