@@ -50,8 +50,10 @@ class App extends React.Component {
 
         },
 
-        '*' : () => {
-
+        '*' : () =>   {
+          let leftSide = Number(this.state.screenValue.split('*')[0]);
+          let rightSide = Number(this.state.screenValue.split('*')[1]);
+          this.setState({result : leftSide * rightSide});
         },
 
         '/' : () => {
@@ -99,9 +101,17 @@ class App extends React.Component {
 
   handleSumBtnClick = () => {
     if (this.state.screenValue != DEFAULT_MSG) {
-      this.setState({currentOperation : '+'})
+      this.setState({currentOperation : '+'});
       let actualValue = this.state.screenValue;
       this.setState({screenValue : actualValue + '+'});
+    }
+  }
+
+  handleMultiplyBtnClick = () => {
+    if (this.state.screenValue != DEFAULT_MSG) {
+      this.setState({currentOperation : '*'});
+      let actualValue = this.state.screenValue;
+      this.setState({screenValue : actualValue + '*'});
     }
   }
 
@@ -126,13 +136,29 @@ class App extends React.Component {
       ></CalcEraseButton>
   }
 
+  /*---------  buttons for the operations ------------*/
+
   renderAddButton = () => {
     return <CalcEraseButton
-      value={this.state.symbols[1]}
-      onClick={() => this.handleSumBtnClick()}
-    >
-    </CalcEraseButton>
+        value={this.state.symbols[1]}
+        onClick={() => this.handleSumBtnClick()}>
+      </CalcEraseButton>
   }
+
+  renderMultiplyButton = () => {
+    return <CalcEraseButton
+      value={this.state.symbols[4]}
+      onClick={() => this.handleMultiplyBtnClick()}>
+      </CalcEraseButton>
+  }
+  
+
+
+
+  /*---------- end of buttons for operations --------- */
+
+
+
 
   renderNumberBtn = (number) => {
     return <CalcButtonForNumber 
@@ -194,11 +220,11 @@ class App extends React.Component {
               </div>
 
               <div class="col-lg-12">
-                {this.renderComputeButton()}
+                {this.renderMultiplyButton()}
               </div>
 
               <div class="col-lg-12">
-
+                {this.renderComputeButton()}
               </div>
 
               <div class="col-lg-12">
