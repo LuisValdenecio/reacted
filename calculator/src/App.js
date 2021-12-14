@@ -38,37 +38,12 @@ class App extends React.Component {
       currentOperation : null,
       realValue : 0,
       symbols : ['<-- DELETE', '+', '-', '%', '*', '/', 'COMPUTE'],
-      operation_prototype : (operator) => {
-        let leftSide = Number(this.state.screenValue.split(operator)[0]);
-        let rightSide = Number(this.state.screenValue.split(operator)[1]);
-
-        if (rightSide == 0 && operator == '/') {
-          this.setState({result : 'DIVISION BY O IS UNDEFINED'})
-        } else {
-          this.setState({result : eval(leftSide+''+operator+''+rightSide)});
-        }
-
-      },
-      operations : {
-        '+' : () => {
-          this.state.operation_prototype('+');
-        },
-
-        '-' : () => {
-         this.state.operation_prototype('-');
-        },
-
-        '*' : () =>   {
-          this.state.operation_prototype('*');
-        },
-
-        '/' : () => {
-          this.state.operation_prototype('/');
-        },
-
-        '%' : () => {
-          this.state.operation_prototype('%');
-        }
+      operation_master : () => {
+          try {
+            this.setState({result : eval(this.state.screenValue)});
+          } catch (ex) {
+            this.setState({result : 'review your arithmetic and try again!'});
+          }
       }
     }
   }
@@ -100,9 +75,7 @@ class App extends React.Component {
 
   /*---------  buttons for the operations ------------*/
   handleComputation = () =>  {
-    this.state.operations[
-      this.state.currentOperation
-    ]();
+    this.state.operation_master();
   }
 
   general_operator = (operator) => {
