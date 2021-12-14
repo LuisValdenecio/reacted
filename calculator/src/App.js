@@ -159,89 +159,87 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
         {this.renderScreen()}
 
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="row">
+        <div className="row">
+          <div className="col-lg-8">
+            <div className="row">
 
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("1")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("2")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("3")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("4")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("5")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("6")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("7")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("8")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("9")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("0")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("(")}
               </div>
-              <div class="col-lg-3 col-md-3">
+              <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn(")")}
               </div>
             </div>
+            
+            <div className="row">
+              <div className="col-lg-12">
+                {this.renderComputeButton()}
+              </div>
+            </div>
+
           </div>
 
-          <div class="col-lg-4">
-            <div class="row">
-              <div class="col-lg-12">
+          <div className="col-lg-4">
+            <div className="row">
+              <div className="col-lg-12">
                 {this.renderEraseButton()}
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 {this.renderAddButton()}
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 {this.renderSubstractButton()}
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 {this.renderMultiplyButton()}
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 {this.renderDivisionButton()}
               </div>
 
-              <div class="col-lg-12">
+              <div className="col-lg-12">
                 {this.renderModulusButton()}
-              </div>
-
-              <div class="col-lg-12">
-                {this.renderComputeButton()}
-              </div>
-
-              <div class="col-lg-12">
-               
               </div>
 
             </div>
           </div>
-
 
         </div>
       </div>
