@@ -196,6 +196,12 @@ class App extends React.Component {
               <div class="col-lg-3 col-md-3">
                 {this.renderNumberBtn("0")}
               </div>
+              <div class="col-lg-3 col-md-3">
+                {this.renderNumberBtn("(")}
+              </div>
+              <div class="col-lg-3 col-md-3">
+                {this.renderNumberBtn(")")}
+              </div>
             </div>
           </div>
 
