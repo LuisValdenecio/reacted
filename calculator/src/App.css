@@ -25,10 +25,16 @@
   font-weight: bold;
   background-color: lightgreen;
   color: #fff;  
+  border : none;
 }
 
 #result {
   color : blue;
+}
+
+#operator {
+  background-color: orange;
+  border : none;
 }
 
 .calcButton {

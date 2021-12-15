@@ -164,8 +164,8 @@ class App extends React.Component {
 
         <div className="row">
           <div className="col-lg-8">
+           
             <div className="row">
-
               <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("1")}
               </div>
@@ -178,6 +178,9 @@ class App extends React.Component {
               <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("4")}
               </div>
+            </div>
+
+            <div className="row">
               <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("5")}
               </div>
@@ -190,6 +193,9 @@ class App extends React.Component {
               <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("8")}
               </div>
+            </div>
+
+            <div className="row">
               <div className="col-lg-3 col-md-3">
                 {this.renderNumberBtn("9")}
               </div>
@@ -217,32 +223,42 @@ class App extends React.Component {
               <div className="col-lg-12">
                 {this.renderEraseButton()}
               </div>
+            </div>  
 
+            <div className="row">
               <div className="col-lg-12">
                 {this.renderAddButton()}
               </div>
+            </div>
 
+            <div className="row">
               <div className="col-lg-12">
                 {this.renderSubstractButton()}
               </div>
+            </div>
 
+            <div className="row">
               <div className="col-lg-12">
                 {this.renderMultiplyButton()}
               </div>
+            </div>
 
+            <div className="row">
               <div className="col-lg-12">
                 {this.renderDivisionButton()}
               </div>
+            </div>
 
+            <div className="row">
               <div className="col-lg-12">
                 {this.renderModulusButton()}
               </div>
+            </div>
 
             </div>
           </div>
 
         </div>
-      </div>
     );
   }
 }
