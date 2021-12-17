@@ -1,46 +1,65 @@
 import './App.css';
+import React from 'react';
 
-function SecondCounter(props) {
-
+function TimeCounter(props) {
+  return (
+    <div className="col-lg-4">
+      <p className="time-value">
+        {props.value}
+      </p>
+    </div>
+  );
 }
 
-function SecondIncreaseButton() {
-
+function TimerButtonController(props) {
+  return (
+    <div className="col-lg-4">
+      <button className="controlButton"
+        onClick={props.onClick}
+      ></button>
+    </div>
+  );
 }
 
-function SecondDecreaseButton() {
+class App extends React.Component {
 
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      defaultValue : '00 '
+    }
+  }
 
-function MinuteCounter(props) {
+  secondRenderer = () => {
+    return <TimeCounter value={this.state.defaultValue}>
+    </TimeCounter>
+  }
 
-}
+  minuteRenderer = () => {
+    return <TimeCounter value={this.state.defaultValue}>
+    </TimeCounter>
+  }
 
-function MinuteIncreaseButton() {
+  hourRenderer = () => {
+    return <TimeCounter value={this.state.defaultValue}>
+    </TimeCounter>
+  }
 
-}
+  timeControlRenderer = () => {
 
-function MinuteDecreaseButton() {
-
-}
-
-function HourCounter() {
-
-}
-
-function HourIncreaseButton() {
-
-}
-
-function HourDecreaseButton() {
-
-}
-
-class App {
+  }
   
   render() {
     return (
       <div className="App">
+
+        <div className="container">
+          <div class="row">
+            {this.secondRenderer()}
+            {this.minuteRenderer()}
+            {this.hourRenderer()}
+          </div>
+        </div>
         
       </div>
     );
