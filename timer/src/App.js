@@ -3,10 +3,10 @@ import React from 'react';
 
 function TimeCounter(props) {
   return (
-    <div className="col-lg-4">
-      <p className="time-value">
+    <div className="col-lg-4 col-md-4">
+      <h1 className="time-value">
         {props.value}
-      </p>
+      </h1>
     </div>
   );
 }
