@@ -11,6 +11,17 @@ function TimeCounter(props) {
   );
 }
 
+function StopAndStartButton(props) {
+  return (
+    <div class="col-lg-6 d-flex justify-content-center">
+      <button id="stopAndstart"
+        onClick={props.onClick}>
+        {props.value}
+      </button>
+    </div>  
+  )
+}
+
 function TimerButtonController(props) {
   return (
     <div className="col-lg-4 d-flex justify-content-center">
@@ -28,8 +39,52 @@ class App extends React.Component {
     this.state = {
       second : 0,
       minute : 0,
-      hour : 0
+      hour : 0,
+      started : false
     };
+  }
+
+  stopAndStartBtnRenderer = () => {
+    return <StopAndStartButton
+      value={this.state.started ? 'Pause' : this.startOrResume()}
+      onClick={this.handleStopAndStart}
+    ></StopAndStartButton>
+  }
+
+  startOrResume = () => {
+    if (
+      this.state.second > 0 ||
+      this.state.minute > 0 ||
+      this.state.hour > 0 
+    ) {return 'Resume'}
+    return 'Start'
+  }
+
+  cancelBtnRenderer = () => {
+    return <StopAndStartButton
+    value='Cancel'
+    onClick={this.handleCancelTimer}
+  ></StopAndStartButton> 
+  }
+
+  handleCancelTimer = () => {
+    this.setState({
+      second : 0
+    });
+    this.setState({
+      minute : 0
+    });
+    this.setState({
+      hour : 0
+    });
+  }
+
+
+  handleStopAndStart = () => {
+    let actual_value = this.state.started;
+    this.setState({
+      started : !actual_value
+    })
   }
 
   numberFormatHelper = (number) => {
@@ -170,6 +225,11 @@ class App extends React.Component {
             {this.decreaseSecondBtn()}
             {this.decreaseMinuteBtn()}
             {this.decreaseHourBtn()}
+          </div>
+
+          <div className="row">
+            {this.stopAndStartBtnRenderer()}
+            {this.cancelBtnRenderer()}
           </div>
 
         </div>
