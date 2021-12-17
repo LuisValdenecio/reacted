@@ -26,32 +26,116 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultValue : '00 '
-    }
-  }
-
-  handleTimeControllerBtn = () => {
-    alert('you clicked me!');
+      second : 0,
+      minute : 0,
+      hour : 0
+    };
   }
 
   secondRenderer = () => {
-    return <TimeCounter value={this.state.defaultValue}>
+    return <TimeCounter value={this.state.second}>
     </TimeCounter>
   }
 
   minuteRenderer = () => {
-    return <TimeCounter value={this.state.defaultValue}>
+    return <TimeCounter value={this.state.minute}>
     </TimeCounter>
   }
 
   hourRenderer = () => {
-    return <TimeCounter value={this.state.defaultValue}>
+    return <TimeCounter value={this.state.hour}>
     </TimeCounter>
   }
 
-  timeContrlrRenderer = (label) => {
+  /* time controller functions */
+  decreaseHourBtn = () => {
+    return <TimerButtonController onClick={this.handleHourDecrease} 
+    value={'Decrease'}>
+    </TimerButtonController>      
+  }
+
+  increaseHourBtn = () => {
+    return <TimerButtonController onClick={this.handleHourIncrease} 
+    value={'Increase'}>
+    </TimerButtonController>   
+  }
+
+  decreaseMinuteBtn = () => {
+    return <TimerButtonController onClick={this.handleMinuteDecrease} 
+    value={'Decrease'}>
+    </TimerButtonController>    
+  }
+
+  increaseMinuteBtn = () => {
+    return <TimerButtonController onClick={this.handleMinuteIncrease} 
+    value={'Increase'}>
+    </TimerButtonController>    
+  }
+
+  decreaseSecondBtn = () => {
+    return <TimerButtonController onClick={this.handleSecondDecrease} 
+    value={'Increase'}>
+    </TimerButtonController>    
+  }
+
+  increaseSecondBtn = () => {
+    return <TimerButtonController onClick={this.handleSecondIncrease} 
+    value={'Increase'}>
+    </TimerButtonController>
+  }
+
+  handleSecondIncrease = () => {
+    let currentSecond = this.state.second;
+    this.setState({
+      second : currentSecond + 1
+    });
+  }
+
+  handleSecondDecrease = () => {
+    let currentSecond = this.state.second;
+    if (currentSecond > 0) {
+      this.setState({
+        second : currentSecond - 1
+      })
+    }
+  }
+
+  handleMinuteDecrease = () => {
+    let currentMinute = this.state.minute;
+    if (currentMinute > 0) {
+      this.setState({
+        minute : currentMinute - 1
+      })
+    }
+  }
+
+  handleMinuteIncrease = () => {
+    let currentMinute = this.state.minute;
+    this.setState({
+      minute : currentMinute + 1
+    })
+  }
+
+  handleHourDecrease = () => {
+    let currentHour = this.state.hour;
+    if (currentHour > 0) {
+      this.setState({
+        hour : currentHour - 1
+      })
+    }
+  }
+
+  handleHourIncrease = () => {
+    let currentHour = this.state.hour;
+    this.setState({
+      hour : currentHour + 1
+    })
+  }
+
+
+  timeContrlrRenderer = (operation, timelabel) => {
     return <TimerButtonController onClick={this.handleTimeControllerBtn} 
-      value={label}
+      value={operation}
     >
     </TimerButtonController>    
   }
@@ -63,9 +147,9 @@ class App extends React.Component {
         <div className="container">
 
           <div className="row">
-            {this.timeContrlrRenderer('Increase')}
-            {this.timeContrlrRenderer('Increase')}
-            {this.timeContrlrRenderer('Increase')}
+            {this.increaseSecondBtn()}
+            {this.increaseMinuteBtn()}
+            {this.increaseHourBtn()}
           </div>
 
           <div className="row">
@@ -75,9 +159,9 @@ class App extends React.Component {
           </div>
 
           <div className="row">
-            {this.timeContrlrRenderer('Decrease')}
-            {this.timeContrlrRenderer('Decrease')}
-            {this.timeContrlrRenderer('Decrease')}
+            {this.decreaseSecondBtn()}
+            {this.decreaseMinuteBtn()}
+            {this.decreaseHourBtn()}
           </div>
 
         </div>
