@@ -155,37 +155,37 @@ class App extends React.Component {
   /* time controller functions */
   decreaseHourBtn = () => {
     return <TimerButtonController onClick={this.handleHourDecrease} 
-    value={'Decrease'}>
+    value={'Decrease -'}>
     </TimerButtonController>      
   };
 
   increaseHourBtn = () => {
     return <TimerButtonController onClick={this.handleHourIncrease} 
-    value={'Increase'}>
+    value={'Increase + '}>
     </TimerButtonController>   
   };
 
   decreaseMinuteBtn = () => {
     return <TimerButtonController onClick={this.handleMinuteDecrease} 
-    value={'Decrease'}>
+    value={'Decrease - '}>
     </TimerButtonController>    
   };
 
   increaseMinuteBtn = () => {
     return <TimerButtonController onClick={this.handleMinuteIncrease} 
-    value={'Increase'}>
+    value={'Increase +'}>
     </TimerButtonController>    
   };
 
   decreaseSecondBtn = () => {
     return <TimerButtonController onClick={this.handleSecondDecrease} 
-    value={'Increase'}>
+    value={'Decrease -'}>
     </TimerButtonController>    
   };
 
   increaseSecondBtn = () => {
     return <TimerButtonController onClick={this.handleSecondIncrease} 
-    value={'Increase'}>
+    value={'Increase +'}>
     </TimerButtonController>
   };
 
