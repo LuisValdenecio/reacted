@@ -81,14 +81,20 @@ class App extends React.Component {
 
     // clear the interval
     clearInterval(this.state.timer_holder);
+    this.setState({timer_holder : null});
   }
 
 
   handleStopAndStart = () => {
 
     // start the timer
-    this.timerEngine();
-
+    if (this.state.timer_holder === null) {
+      this.timerEngine();
+    } else {
+      clearInterval(this.state.timer_holder);
+      this.setState({timer_holder : null});
+    }
+    
     let actual_value = this.state.started;
     this.setState({
       started : !actual_value
@@ -119,12 +125,12 @@ class App extends React.Component {
       this.setState({second : second_value - 1})
     }
 
-    if (minute_value > 0 && this.state.second == 0) {
+    if (minute_value > 0 && this.state.second === 0) {
       this.setState({minute : minute_value - 1});
       this.setState({second : 59});
     }
 
-    if (hour_value > 0 && this.state.minute == 0 && this.state.second == 0) {
+    if (hour_value > 0 && this.state.minute === 0 && this.state.second === 0) {
       this.setState({hour : hour_value - 1});
       this.setState({minute : 59});
       this.setState({second : 59});
