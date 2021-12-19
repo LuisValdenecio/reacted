@@ -26,8 +26,8 @@ function TimerButtonController(props) {
   return (
     <div className="col-lg-4 d-flex justify-content-center">
       <button className="controlButton"
-        onClick={props.onClick}
-      >{props.value}</button>
+        onClick={props.onClick}>{props.value}
+      </button>
     </div>
   );
 }
@@ -258,7 +258,7 @@ class App extends React.Component {
 
   timeContrlrRenderer = (operation, timelabel) => {
     return <TimerButtonController onClick={this.handleTimeControllerBtn} 
-      value={operation}
+      value={operation} class={this.active_class}
     >
     </TimerButtonController>    
   };
