@@ -103,7 +103,7 @@ class App extends React.Component {
     }
   };
 
-  // this method handles all the internals of the timer
+  // the two methods bellow handle all the internals of the timer
   timerEngine = () => {
     this.setState({
       timer_holder :  setInterval(this.timer, 1000)
@@ -112,9 +112,22 @@ class App extends React.Component {
 
   timer = () => {
     let second_value = this.state.second;
+    let minute_value = this.state.minute;
+    let hour_value = this.state.hour;
 
     if (second_value > 0) {
       this.setState({second : second_value - 1})
+    }
+
+    if (minute_value > 0 && this.state.second == 0) {
+      this.setState({minute : minute_value - 1});
+      this.setState({second : 59});
+    }
+
+    if (hour_value > 0 && this.state.minute == 0 && this.state.second == 0) {
+      this.setState({hour : hour_value - 1});
+      this.setState({minute : 59});
+      this.setState({second : 59});
     }
   }
 
