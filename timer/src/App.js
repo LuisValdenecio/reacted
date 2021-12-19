@@ -190,58 +190,69 @@ class App extends React.Component {
   };
 
   handleSecondIncrease = () => {
-    let currentSecond = this.state.second;
-    if (currentSecond < 59) {
-      this.setState({
-        second : currentSecond + 1
-      });
+    if (this.state.timer_holder === null) {
+      let currentSecond = this.state.second;
+      if (currentSecond < 59) {
+        this.setState({
+          second : currentSecond + 1
+        });
+      }
     }
   };
 
   handleSecondDecrease = () => {
-    let currentSecond = this.state.second;
-    if (currentSecond > 0) {
-      this.setState({
-        second : currentSecond - 1
-      })
-    }
+    if (this.state.timer_holder === null) {
+      let currentSecond = this.state.second;
+      if (currentSecond > 0) {
+        this.setState({
+          second : currentSecond - 1
+        })
+      }
+    }  
   };
 
   handleMinuteDecrease = () => {
-    let currentMinute = this.state.minute;
-    if (currentMinute > 0) {
-      this.setState({
-        minute : currentMinute - 1
-      })
+    if (this.state.timer_holder === null) {
+      let currentMinute = this.state.minute;
+      if (currentMinute > 0) {
+        this.setState({
+          minute : currentMinute - 1
+        })
+      }
     }
   };
 
   handleMinuteIncrease = () => {
-    let currentMinute = this.state.minute;
-    if (currentMinute < 59) {
-      this.setState({
-        minute : currentMinute + 1
-      })
+    if (this.state.timer_holder === null) {
+      let currentMinute = this.state.minute;
+      if (currentMinute < 59) {
+        this.setState({
+          minute : currentMinute + 1
+        })
+      }
     }
   };
 
   handleHourDecrease = () => {
-    let currentHour = this.state.hour;
-    if (currentHour > 0) {
-      this.setState({
-        hour : currentHour - 1
-      })
+    if (this.state.timer_holder === null) {
+      let currentHour = this.state.hour;
+        if (currentHour > 0) {
+          this.setState({
+            hour : currentHour - 1
+          })
+      }
     }
   };
 
   handleHourIncrease = () => {
-    let currentHour = this.state.hour;
-    if (currentHour < 23) {
-      this.setState({
-        hour : currentHour + 1
-      })
-    }
-    
+    if (this.state.timer_holder === null) {
+      let currentHour = this.state.hour;
+      if (currentHour < 23) {
+        this.setState({
+          hour : currentHour + 1
+        })
+      }
+    }    
   };
 
 
