@@ -172,9 +172,11 @@ class App extends React.Component {
 
   handleSecondIncrease = () => {
     let currentSecond = this.state.second;
-    this.setState({
-      second : currentSecond + 1
-    });
+    if (currentSecond < 59) {
+      this.setState({
+        second : currentSecond + 1
+      });
+    }
   };
 
   handleSecondDecrease = () => {
@@ -197,9 +199,11 @@ class App extends React.Component {
 
   handleMinuteIncrease = () => {
     let currentMinute = this.state.minute;
-    this.setState({
-      minute : currentMinute + 1
-    })
+    if (currentMinute < 59) {
+      this.setState({
+        minute : currentMinute + 1
+      })
+    }
   };
 
   handleHourDecrease = () => {
@@ -213,9 +217,12 @@ class App extends React.Component {
 
   handleHourIncrease = () => {
     let currentHour = this.state.hour;
-    this.setState({
-      hour : currentHour + 1
-    })
+    if (currentHour < 23) {
+      this.setState({
+        hour : currentHour + 1
+      })
+    }
+    
   };
 
 
