@@ -135,6 +135,13 @@ class App extends React.Component {
       this.setState({minute : 59});
       this.setState({second : 59});
     }
+
+    // when the timer finishes the countdown
+    if (second_value == 0 && minute_value == 0 && hour_value == 0) {
+      clearInterval(this.state.timer_holder);
+      this.setState({timer_holder : null});  
+      alert('The timer is done!');
+    }
   }
 
   secondRenderer = () => {

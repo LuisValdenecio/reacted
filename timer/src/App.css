@@ -8,6 +8,8 @@ button {
 
 .time-value {
   font-size : 70px;
+  font-weight : bold;
+  color : orange;
 }
 
 .row {
