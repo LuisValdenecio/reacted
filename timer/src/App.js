@@ -13,7 +13,7 @@ function TimeCounter(props) {
 
 function StopAndStartButton(props) {
   return (
-    <div class="col-lg-6 d-flex justify-content-center">
+    <div className="col-lg-6 d-flex justify-content-center">
       <button id="stopAndstart"
         onClick={props.onClick}>
         {props.value}
@@ -40,7 +40,8 @@ class App extends React.Component {
       second : 0,
       minute : 0,
       hour : 0,
-      started : false
+      started : false,
+      timer_holder : null
     };
   }
 
@@ -77,10 +78,17 @@ class App extends React.Component {
     this.setState({
       hour : 0
     });
+
+    // clear the interval
+    clearInterval(this.state.timer_holder);
   }
 
 
   handleStopAndStart = () => {
+
+    // start the timer
+    this.timerEngine();
+
     let actual_value = this.state.started;
     this.setState({
       started : !actual_value
@@ -94,6 +102,21 @@ class App extends React.Component {
       return number;
     }
   };
+
+  // this method handles all the internals of the timer
+  timerEngine = () => {
+    this.setState({
+      timer_holder :  setInterval(this.timer, 1000)
+    })
+  }
+
+  timer = () => {
+    let second_value = this.state.second;
+
+    if (second_value > 0) {
+      this.setState({second : second_value - 1})
+    }
+  }
 
   secondRenderer = () => {
     return <TimeCounter value={this.numberFormatHelper(this.state.second)}>
