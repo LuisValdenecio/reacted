@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 function Greeting (props) {
@@ -8,23 +8,37 @@ function Greeting (props) {
   </h1>
 }
 
-class App extends React.Component {
+class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      greet : 'hi again! Welcome back'
-    }
+      toDoLists : []
+    };
+    this.handleAddingTask = this.handleAddingTask.bind(this)
+  }
+
+  handleAddingTask() {
+    alert('hi, I will add this task')
+  }
+
+  renderInputForTasks() {
+    return <input type="text" id="taskInput" placeholder='Insert a task'></input>
+  }
+
+  renderButtonToAddTask() {
+    return <button placeholder='Add task' id="button" onClick={this.handleAddingTask}>Add Task</button>
   }
 
   renderGreeting() {
-    return <Greeting value={this.state.greet}></Greeting>
+    return <h1>Hi! What are we doing today?</h1>
   }
 
   render() {
     return (
       <div className="App">
         {this.renderGreeting()}
+        {this.renderInputForTasks()}{this.renderButtonToAddTask()}
       </div>
     );
   }
