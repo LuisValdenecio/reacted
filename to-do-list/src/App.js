@@ -1,11 +1,16 @@
-import logo from './logo.svg';
 import React, { Component } from 'react';
 import './App.css';
 
-function Greeting (props) {
-  return <h1>
-    {props.value}
-  </h1>
+function TaskItems (props) {
+  const tasks = props.tasks;
+  const listTasks = tasks.map((task) => 
+    <li key={task.id.toString()}>
+      {task.description}
+    </li>
+  );
+  return (
+    <ul>{listTasks}</ul>
+  );
 }
 
 class App extends Component {
@@ -13,17 +18,42 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      toDoLists : []
+      toDoList : [
+        {
+          id : 1,
+          description : 'Eat pizza'
+        },
+        {
+          id : 2,
+          description : 'Watch movies'
+        }
+      ]
     };
-    this.handleAddingTask = this.handleAddingTask.bind(this)
+    this.handleAddingTask = this.handleAddingTask.bind(this);
+    this.renderListing = this.renderListing.bind(this);
   }
 
   handleAddingTask() {
-    alert('hi, I will add this task')
+    let lastTaskId = this.state.toDoList[
+      this.state.toDoList.length - 1
+    ].id;
+
+    let newTask = {id : lastTaskId + 1, description : 'another boring task'};
+
+    let newToDoList = this.state.toDoList;
+    newToDoList.push(newTask);
+
+    this.setState({
+      toDoList : newToDoList
+    });   
   }
 
   renderInputForTasks() {
     return <input type="text" id="taskInput" placeholder='Insert a task'></input>
+  }
+
+  renderListing() {
+    return <TaskItems tasks={this.state.toDoList}></TaskItems>
   }
 
   renderButtonToAddTask() {
@@ -39,6 +69,7 @@ class App extends Component {
       <div className="App">
         {this.renderGreeting()}
         {this.renderInputForTasks()}{this.renderButtonToAddTask()}
+        {this.renderListing()}
       </div>
     );
   }
