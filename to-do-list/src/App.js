@@ -54,27 +54,29 @@ class App extends Component {
 
     e.preventDefault();
 
-    const nextIndex = this.state.toDoList.length + 1;
-    const task = {
-      id : nextIndex,
-      title : this.state.inputValue
+    if (this.state.inputValue != '') {
+      const nextIndex = this.state.toDoList.length + 1;
+      const task = {
+        id : nextIndex,
+        title : this.state.inputValue
+      }
+
+      const newToDoList = this.state.toDoList;
+      newToDoList.push(task)
+
+      this.setState({
+        toDoList : newToDoList
+      }); 
+
+      // clear the form fields
+      this.setState({
+        inputValue : ''
+      });
+
+      this.setState({
+        textAreaValue : ''
+      });
     }
-
-    const newToDoList = this.state.toDoList;
-    newToDoList.push(task)
-
-    this.setState({
-      toDoList : newToDoList
-    }); 
-
-    // clear the form fields
-    this.setState({
-      inputValue : ''
-    });
-
-    this.setState({
-      textAreaValue : ''
-    });
 
   }
 
