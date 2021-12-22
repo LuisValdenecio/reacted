@@ -13,51 +13,52 @@ function TaskItems (props) {
   );
 }
 
+function TaskForm(props) {
+  return (
+    <form onSubmit={props.onFormSubmit}>
+        <input type="text" placeholder='Type in the task' onChange={props.onInputChange}/><br></br>
+        <textarea type="text" placeholder='Descrive the task' onChange={props.onTextAreaChange} />
+        <input type="submit" value="Submit"/>
+    </form>    
+  );  
+}
+
 class App extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      toDoList : [
-        {
-          id : 1,
-          description : 'Eat pizza'
-        },
-        {
-          id : 2,
-          description : 'Watch movies'
-        }
-      ]
+      toDoList : [],
+      inputValue : '',
+      textAreaValue : ''
     };
-    this.handleAddingTask = this.handleAddingTask.bind(this);
-    this.renderListing = this.renderListing.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onTextAreaChange = this.onTextAreaChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.renderForm = this.renderForm.bind(this);
   }
 
-  handleAddingTask() {
-    let lastTaskId = this.state.toDoList[
-      this.state.toDoList.length - 1
-    ].id;
-
-    let newTask = {id : lastTaskId + 1, description : 'another boring task'};
-
-    let newToDoList = this.state.toDoList;
-    newToDoList.push(newTask);
-
-    this.setState({
-      toDoList : newToDoList
-    });   
+  onInputChange(e) {
+    this.setState({inputValue : e.target.value});
   }
 
-  renderInputForTasks() {
-    return <input type="text" id="taskInput" placeholder='Insert a task'></input>
+  onTextAreaChange(e) {
+    this.setState({textAreaValue : e.target.value});
   }
 
-  renderListing() {
-    return <TaskItems tasks={this.state.toDoList}></TaskItems>
+  onFormSubmit(e) {
+    e.preventDefault();
+    alert('you have submited the form');
+    console.log(this.state.inputValue);
+    console.log(this.state.textAreaValue);
   }
 
-  renderButtonToAddTask() {
-    return <button placeholder='Add task' id="button" onClick={this.handleAddingTask}>Add Task</button>
+  renderForm() {
+    return <TaskForm onFormSubmit={this.onFormSubmit}
+    onInputChange={this.onInputChange}
+    onTextAreaChange={this.onTextAreaChange}
+    >
+    </TaskForm>
   }
 
   renderGreeting() {
@@ -68,8 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.renderGreeting()}
-        {this.renderInputForTasks()}{this.renderButtonToAddTask()}
-        {this.renderListing()}
+        {this.renderForm()}
       </div>
     );
   }
