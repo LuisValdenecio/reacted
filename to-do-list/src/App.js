@@ -5,20 +5,23 @@ function TaskItems (props) {
   const tasks = props.tasks;
   const listTasks = tasks.map((task) => 
     <li key={task.id.toString()}>
-      {task.description}
+      {task.title}
     </li>
   );
+
   return (
     <ul>{listTasks}</ul>
   );
-}
+ }
 
 function TaskForm(props) {
   return (
     <form onSubmit={props.onFormSubmit}>
-        <input type="text" placeholder='Type in the task' onChange={props.onInputChange}/><br></br>
-        <textarea type="text" placeholder='Descrive the task' onChange={props.onTextAreaChange} />
-        <input type="submit" value="Submit"/>
+        <input type="text" placeholder='Type in the task' onChange={props.onInputChange} 
+        value={props.inputValue}/><br/>
+        <textarea type="text" placeholder='Describe the task' onChange={props.onTextAreaChange} 
+        value={props.textAreaValue}/><br/>
+        <input type="submit" value="Add the task"/>
     </form>    
   );  
 }
@@ -36,6 +39,7 @@ class App extends Component {
     this.onTextAreaChange = this.onTextAreaChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.renderForm = this.renderForm.bind(this);
+    this.renderTaskItems = this.renderTaskItems.bind(this);
   }
 
   onInputChange(e) {
@@ -47,18 +51,50 @@ class App extends Component {
   }
 
   onFormSubmit(e) {
+
     e.preventDefault();
-    alert('you have submited the form');
-    console.log(this.state.inputValue);
-    console.log(this.state.textAreaValue);
+
+    const nextIndex = this.state.toDoList.length + 1;
+    const task = {
+      id : nextIndex,
+      title : this.state.inputValue
+    }
+
+    const newToDoList = this.state.toDoList;
+    newToDoList.push(task)
+
+    this.setState({
+      toDoList : newToDoList
+    }); 
+
+    // clear the form fields
+    this.setState({
+      inputValue : ''
+    });
+
+    this.setState({
+      textAreaValue : ''
+    });
+
   }
 
   renderForm() {
     return <TaskForm onFormSubmit={this.onFormSubmit}
-    onInputChange={this.onInputChange}
-    onTextAreaChange={this.onTextAreaChange}
+      onInputChange={this.onInputChange}
+      onTextAreaChange={this.onTextAreaChange}
+      textAreaValue={this.state.textAreaValue}
+      inputValue={this.state.inputValue}
     >
     </TaskForm>
+  }
+
+  renderTaskItems() {
+    if (this.state.toDoList.length > 0) {
+      return <TaskItems tasks={this.state.toDoList}></TaskItems>
+    } else 
+    return (
+      <h5>You have not added any tasks yet</h5>
+    );
   }
 
   renderGreeting() {
@@ -68,8 +104,27 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.renderGreeting()}
-        {this.renderForm()}
+        <div className="container">
+
+          <div className="row">
+            <div className="col-lg-12">
+              {this.renderGreeting()}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-lg-12">
+              {this.renderForm()}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-lg-12">
+              {this.renderTaskItems()}
+            </div>
+          </div>
+
+        </div>
       </div>
     );
   }
