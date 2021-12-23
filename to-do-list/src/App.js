@@ -17,9 +17,10 @@ function TaskItems (props) {
 function TaskForm(props) {
   return (
     <form onSubmit={props.onFormSubmit}>
-        <input type="text" placeholder='Type in the task' onChange={props.onInputChange} 
+        <input class="form-control form-control-lg" type="text" aria-label=".form-control-lg example" placeholder='Type in the task' 
+        onChange={props.onInputChange} 
         value={props.inputValue}/><br/>
-        <input type="submit" value="Add the task"/>
+        <input class="btn btn-primary"  type="submit" value="Add the task"/>
     </form>    
   );  
 }
