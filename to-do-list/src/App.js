@@ -12,15 +12,13 @@ function TaskItems (props) {
   return (
     <ul>{listTasks}</ul>
   );
- }
+}
 
 function TaskForm(props) {
   return (
     <form onSubmit={props.onFormSubmit}>
         <input type="text" placeholder='Type in the task' onChange={props.onInputChange} 
         value={props.inputValue}/><br/>
-        <textarea type="text" placeholder='Describe the task' onChange={props.onTextAreaChange} 
-        value={props.textAreaValue}/><br/>
         <input type="submit" value="Add the task"/>
     </form>    
   );  
@@ -32,11 +30,9 @@ class App extends Component {
     super(props);
     this.state = {
       toDoList : [],
-      inputValue : '',
-      textAreaValue : ''
+      inputValue : ''
     };
     this.onInputChange = this.onInputChange.bind(this);
-    this.onTextAreaChange = this.onTextAreaChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderTaskItems = this.renderTaskItems.bind(this);
@@ -72,10 +68,6 @@ class App extends Component {
       this.setState({
         inputValue : ''
       });
-
-      this.setState({
-        textAreaValue : ''
-      });
     }
 
   }
@@ -83,8 +75,6 @@ class App extends Component {
   renderForm() {
     return <TaskForm onFormSubmit={this.onFormSubmit}
       onInputChange={this.onInputChange}
-      onTextAreaChange={this.onTextAreaChange}
-      textAreaValue={this.state.textAreaValue}
       inputValue={this.state.inputValue}
     >
     </TaskForm>
@@ -100,7 +90,7 @@ class App extends Component {
   }
 
   renderGreeting() {
-    return <h1>Hi! What are we doing today?</h1>
+    return <h5>Hi! What are we doing today?</h5>
   }
 
   render() {
