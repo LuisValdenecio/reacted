@@ -1,4 +1,4 @@
-# Windows 10 React Calculator App
+# Windows 10 React Calendar App
 
 ![The app mock for development reference](./public/mock.png)
 
