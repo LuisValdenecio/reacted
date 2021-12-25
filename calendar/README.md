@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Windows 10 React Calculator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![The app mock for development reference](./public/mock.png)
 
-## Available Scripts
+## The hierarchy of components
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [1. App (Encompasses the whole app)](#usage)
+  * [2. AppLeftSide (Encompasses all the elements that reside on the left part of the app)](#available-scripts)
+    * [3. ToggleLeftSide (shows and hides the left-side of the app)](#npm-start)
+    * [4. CurrentDate (shows the current month and year)](#npm-test)
+    * [5. MiniCalendar (Shows the days of the selected month, highlights the current day)](#npm-run-build)
+    * [6. MiniDay (shows a particular day of a particular month)](#npm-run-eject)
+    * [7. AccountSelector (Selects the current account to use with the App)](#learn-more)
+    * [8. EventSelector (hides or shows registered events)](#code-splitting)
+    * [9. EventCreator (creates an event)](#analyzing-the-bundle-size)
+    * [10. NextMonth (goes to the next month on the calendar) ](#making-a-progressive-web-app)
+    * [11. PreviousMonth (goes to the previous month on the calendar)](#advanced-configuration)
+    * [12. WeekDays (shows the days of the week from monday to sunday)](#deployment)
+  * [13. AppRightSide (Encompasses all the elements that reside on the right side of the app)](#npm-run-build-fails-to-minify)
+    * [14. MaxCalendar (shows the days of the selected month, highlights the current day)](#google-analytics-setup)
+    * [15. MaxDay (shows a particular day of a particular month)](#credits)
+    * [16. TodayFilter (changes the appearence of MaxCalendar to focus on the hours of today)](#terms-and-license)
+    * [17. DayFilter (changes the appearence of MaxCalendar to focus on the selected day or days)](#about-us)
+    * [18. WeekFilter (changes the appearence of MaxCalendar to focus on the working or full week )](#stay-in-the-loop)
+    * [19. MonthFilter (changes the appearence of MaxCalendar to focus on the days of the month - highlights the current day )](#stay-in-the-loop)
+    * [20. YearFilter (changes the appearence of MaxCalendar to show all the months of the year from Jan to Dec )](#stay-in-the-loop)
